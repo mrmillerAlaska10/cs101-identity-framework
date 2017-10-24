@@ -90,6 +90,18 @@ namespace WebApplication3
                    name: "manage",
                    template: "{controller=Manage}/{action=Index}/{id?}");
 
+                routes.MapRoute(
+                       "LessonIndex",
+                       "Lesson",
+                new { controller = "Lesson", action = "Index" }
+                );
+
+                routes.MapRoute(
+                        "Lesson",
+                        "Lesson/{id}",
+                 new { controller = "Lesson", action = "Lesson" }
+                 );
+
                 routes.MapRoute("Student", "About",
                  new { controller = "Account", action = "About" });
             });

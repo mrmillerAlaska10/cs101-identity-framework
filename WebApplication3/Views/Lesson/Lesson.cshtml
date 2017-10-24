@@ -1,0 +1,130 @@
+
+@{
+    ViewData["Title"] = "Introduction";
+}
+<div class="col-md-9">
+    <div>
+        <h1>
+            @ViewData["Title"]
+        </h1>
+    </div>
+    <div>
+
+        A bit is the smallest possible unit of data represented by binary. It has a value of either 1 or 0. While it can be used to represent true or false statements, it is often more useful when combined with other bits.
+        A good way to write out set of bits is write it out as a binary number grouped in sets of 4 and with 0’s at the front as needed to fill in the extra digits.
+        <br />
+        <div class="subsection">
+            0010 1010
+            <sub class="subitle"> A binary number</sub>
+        </div>
+        <br />
+        If dealing with multiple sets of binary numbers, it is a common practice to represent them with the same number of digits even it means adding entire sections of four 0’s at the front.
+        <div class="subsection">
+            0000 1101
+            1111 1212
+            <sub class="subitle"> grouping binary numbers</sub>
+        </div>
+        <br />
+        Doing so allows for increased readability and works well when dealing with machines, which typically group everything in set sizes.
+        If the number of digits in each number is known ahead of time, one may write multiple numbers in this format on the same line.
+        <br />
+        <div class="subsection">
+            0000 1101 1010 0110 1111 1002 0110 1011
+            <sub class="subitle">
+                grouping binary numbers on the same line with each number using  8 bits.
+            </sub>
+        </div>
+        <br />
+        This reduces readability, but can help show how data is aligned
+        <br />
+        <br />
+        <h3>Grouping bits and bytes</h3>
+        <br />
+        A nibble is an ordered set of 4 bits. The number of values you can have in a nibble is 24 = 16. It is common to represent a nibble by converting it to a hexadecimal (base 16) number.
+        
+        <div class="subsection">
+            <table>
+                <tr>
+                    <td>
+                        0000 = 0
+                    </td>
+                    <td>
+                        0001 = 1
+                    </td>
+                    <td>
+                        0010 = 2
+                    </td>
+                    <td>
+                        0011 = 3
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        0100 = 4
+                    </td>
+                    <td>
+                        0101 = 5
+                    </td>
+                    <td>
+                        0110 = 6
+                    </td>
+                    <td>
+                        0111 = 7
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1000 = 8
+                    </td>
+                    <td>
+                        1001 = 9
+                    </td>
+                    <td>
+                        1010 = A
+                    </td>
+                    <td>
+                        1011 = B
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1100 = C
+                    </td>
+                    <td>
+                        1101 = D
+                    </td>
+                    <td>
+                        1110 = E
+                    </td>
+                    <td>
+                        1111 = F
+                    </td>
+                </tr>
+            </table>
+            			
+           		
+           		
+           		
+            <sub class="subitle">
+                Possible values of a nibble.
+            </sub>
+        </div>
+        A byte is an ordered set of 8 bits.  It is common to represent a byte as two nibbles.
+        <br />
+        <div class="subsection">
+            AB 2F 43 12
+            <sub class="subitle">
+                four bytes
+            </sub>
+        </div>
+
+        In almost all cases however, we want to deal with more than just a single bit. Our computers typically use fixed sized sets of bits to index instructions and values. The size of these groupings is called the word size. A single set of bits that has that word size is called a word.  While word sizes vary by machine, most modern systems use 32 or 64 bit sized words.
+
+    </div>
+
+
+    <br />
+    <div>
+        Next lesson >>
+    </div>
+</div>

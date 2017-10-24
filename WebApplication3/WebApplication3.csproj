@@ -34,6 +34,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\StudentViewModels\" />
+    <Folder Include="Views\Lesson\Lesson\" />
+    <Folder Include="Views\Student\" />
     <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
