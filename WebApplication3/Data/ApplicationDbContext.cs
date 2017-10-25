@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Models;
+using WebApplication3.Models.QuizModels;
 
 namespace WebApplication3.Data
 {
@@ -22,6 +23,8 @@ namespace WebApplication3.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<WebApplication3.Models.QuizModels.QuestionModel> QuestionModel { get; set; }
 
 
     }
