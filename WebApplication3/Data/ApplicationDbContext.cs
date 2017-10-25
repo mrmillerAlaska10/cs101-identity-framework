@@ -22,5 +22,34 @@ namespace WebApplication3.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+
+    }
+
+    public static class DbContextExtensions
+    {
+        public static void Seed(this ApplicationDbContext context)
+        {
+            // Perform database delete and create
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            // Perform seed operations
+            AddRoles(context);
+
+            // Save changes and release resources
+            context.SaveChanges();
+            context.Dispose();
+        }
+
+        private static void AddRoles(ApplicationDbContext context)
+        {
+            context.AddRange(
+                new IdentityRole {Name = "user" },
+                 new IdentityRole { Name = "admin" }
+                );
+            Console.WriteLine("\n\n\nbatman\n\n\n");
+        }
+
     }
 }
