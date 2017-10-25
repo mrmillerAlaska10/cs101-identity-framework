@@ -104,6 +104,10 @@ namespace WebApplication3
 
                 routes.MapRoute("Student", "About",
                  new { controller = "Account", action = "About" });
+
+                routes.MapRoute(
+                    name: "admin",
+                    template: "{controller=Admin}/{action=Index}/{id?}");
             });
         }
     }
