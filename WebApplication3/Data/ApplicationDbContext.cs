@@ -16,6 +16,11 @@ namespace WebApplication3.Data
         {
         }
 
+        
+        public ApplicationDbContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -24,7 +29,14 @@ namespace WebApplication3.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<WebApplication3.Models.QuizModels.QuestionModel> QuestionModel { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder builder) // hardcode in connection to database through this context.
+        {
+            builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CS101;Trusted_Connection=True;MultipleActiveResultSets=true");
+            base.OnConfiguring(builder);
+        }
+        public DbSet<QuestionModel> QuestionModel { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
 
 
     }

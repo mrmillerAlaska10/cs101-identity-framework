@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApplication3.Models;
 using WebApplication3.Models.AccountViewModels;
 using WebApplication3.Services;
+using WebApplication3.Data;
 
 namespace WebApplication3.Controllers
 {
@@ -24,10 +26,13 @@ namespace WebApplication3.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        private ApplicationDbContext _context;
+        private IConfigurationRoot _config;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            SignInManager<ApplicationUser> signInManager, 
+            ApplicationDbContext context,
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
@@ -35,6 +40,7 @@ namespace WebApplication3.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
@@ -112,8 +118,14 @@ namespace WebApplication3.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                ApplicationDbContext db = new ApplicationDbContext();
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                Student student = new Student { FirstName = model.FirstName, LastName = model.LastName, StudentId = model.ID };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                db.Students.Add(student);
+                db.SaveChanges();
+
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
@@ -124,6 +136,7 @@ namespace WebApplication3.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
+                    
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

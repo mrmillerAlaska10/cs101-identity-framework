@@ -17,6 +17,10 @@ namespace WebApplication3.Models.AccountViewModels
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "ID")]
+        public int ID { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

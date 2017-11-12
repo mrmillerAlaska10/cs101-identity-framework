@@ -8,8 +8,8 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171112082923_Test")]
-    partial class Test
+    [Migration("20171112103437_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,6 +173,28 @@ namespace WebApplication3.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Course", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ClassLimit");
+
+                    b.Property<int>("ClassSize");
+
+                    b.Property<string>("CourseName");
+
+                    b.Property<string>("InstructorName");
+
+                    b.Property<int?>("StudentId");
+
+                    b.HasKey("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Courses");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.QuizModels.QuestionModel", b =>
                 {
                     b.Property<int>("Id")
@@ -193,7 +215,7 @@ namespace WebApplication3.Migrations
                     b.ToTable("QuestionModel");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizModel", b =>
+            modelBuilder.Entity("WebApplication3.Models.QuizModels.Quiz", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -206,7 +228,25 @@ namespace WebApplication3.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuizModel");
+                    b.ToTable("Quiz");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Student", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Password");
+
+                    b.HasKey("StudentId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -246,9 +286,16 @@ namespace WebApplication3.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Course", b =>
+                {
+                    b.HasOne("WebApplication3.Models.Student")
+                        .WithMany("Courses")
+                        .HasForeignKey("StudentId");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.QuizModels.QuestionModel", b =>
                 {
-                    b.HasOne("WebApplication3.Models.QuizModels.QuizModel", "QuizModel")
+                    b.HasOne("WebApplication3.Models.QuizModels.Quiz", "QuizModel")
                         .WithMany()
                         .HasForeignKey("QuizFK")
                         .OnDelete(DeleteBehavior.Cascade);
