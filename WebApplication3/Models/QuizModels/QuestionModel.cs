@@ -20,6 +20,6 @@ namespace WebApplication3.Models.QuizModels
         public int QuizFK { get; set; }
 
         [ForeignKey("QuizFK")]
-        public QuizModel QuizModel { get; set; }
+        public Quiz QuizModel { get; set; }
     }
 }

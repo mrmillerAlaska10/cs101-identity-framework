@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication3.Models.QuizModels
 {
-    public class QuizModel
+    public class Quiz
     {
         [Required]
         public int Id { get; set; }

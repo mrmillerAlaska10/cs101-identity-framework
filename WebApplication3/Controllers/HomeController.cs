@@ -18,8 +18,8 @@ namespace WebApplication3.Controllers
         public IActionResult Index()
         {
 
-            db.Users.AddRange(new ApplicationUser { Email = "g@myemail.com", UserName = "bob sagget" });
-                 ViewData["user"] = db.Users.Last();
+            //db.Users.AddRange(new ApplicationUser { Email = "g@myemail.com", UserName = "bob sagget" });
+            //     ViewData["user"] = db.Users.Last();
             return View();
         }
 
