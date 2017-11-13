@@ -22,12 +22,28 @@ namespace WebApplication3.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult QuizMaker()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult QuizMaker(QuizMakerViewModel model)
         {
-            //ApplicationDbContext db = new ApplicationDbContext();
-            //var quiz = new Quiz { Question = model.Question, Answer = model.Answer, MCOptions = model.MCOptions };
+            int Counter = 0;
+            ApplicationDbContext db = new ApplicationDbContext();
+            var quiz = new Quiz { QuizName = model.QuizName };
 
-            return View();
+            foreach ( var question in model.Question)
+            {
+                QuizQuestion temp = new QuizQuestion { Question = model.Question[Counter], Answer = model.Answer[Counter] };
+                db.Add(temp);
+                Counter++;
+            }
+            db.Add(quiz);
+            db.SaveChanges(); // maybe change to async
+            return View(model);
         }
 
         public IActionResult LessonMaker()

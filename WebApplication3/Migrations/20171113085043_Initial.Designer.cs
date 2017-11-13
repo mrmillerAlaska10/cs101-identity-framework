@@ -8,7 +8,7 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171113044601_Initial")]
+    [Migration("20171113085043_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,18 @@ namespace WebApplication3.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.QuizModels.Quiz", b =>
+                {
+                    b.Property<int>("QuizId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("QuizName");
+
+                    b.HasKey("QuizId");
+
+                    b.ToTable("Quizzes");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizQuestion", b =>
                 {
                     b.Property<int>("QuestionId")
@@ -204,7 +216,11 @@ namespace WebApplication3.Migrations
 
                     b.Property<string>("Question");
 
+                    b.Property<int?>("QuizId");
+
                     b.HasKey("QuestionId");
+
+                    b.HasIndex("QuizId");
 
                     b.ToTable("QuizQuestions");
                 });
@@ -269,6 +285,13 @@ namespace WebApplication3.Migrations
                     b.HasOne("WebApplication3.Models.Student")
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizQuestion", b =>
+                {
+                    b.HasOne("WebApplication3.Models.QuizModels.Quiz")
+                        .WithMany("QuizQuestions")
+                        .HasForeignKey("QuizId");
                 });
         }
     }
