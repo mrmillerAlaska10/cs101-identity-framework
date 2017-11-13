@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication3.Controllers
 {
-    public class LessonController : Controller
+    public class StudentController : Controller
     {
         public IActionResult Index()
         {

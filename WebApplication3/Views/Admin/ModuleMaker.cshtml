@@ -1,7 +1,13 @@
-
+@using WebApplication3.Models.ModuleModels;
+@using WebApplication3.ViewModels.AdminViewModels;
+@model ModuleMakerViewModel
 @{
     ViewData["Title"] = "ModuleMaker";
 }
 
 <h2>ModuleMaker</h2>
-
+<<form asp-controller="Admin" asp-action="ModuleMaker" method="post" class="form-horizontal">
+    <input asp-for="ModuleTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title Name" name="ModuleTitle" />
+     <br />
+    <input type="submit" class="form-control" value="Create Module" />
+</form>

@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication3.Models.Lesson
+namespace WebApplication3.Models.ModuleModels
 {
     public class Lesson
     {
         [Key]
         public int LessonID { get; set; }
+        public string ModuleTitle { get; set; }
         public string LessonTitle { get; set; }
         public string LessonText { get; set; }//unformated. Format in js
     }

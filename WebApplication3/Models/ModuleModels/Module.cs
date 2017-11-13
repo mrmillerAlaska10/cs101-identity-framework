@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication3.Models.Lesson
+namespace WebApplication3.Models.ModuleModels
 {
     
     public class Module
     {
         [Key]
-        int ModuleID;
-        public string[] Lesson { get; set; }
+        public int ModuleID { get; set; }
+        public string ModuleTitle { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
     }
 }

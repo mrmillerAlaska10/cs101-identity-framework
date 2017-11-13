@@ -8,7 +8,7 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171113085043_Initial")]
+    [Migration("20171113220415_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,36 @@ namespace WebApplication3.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Lesson", b =>
+                {
+                    b.Property<int>("LessonID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("LessonText");
+
+                    b.Property<string>("LessonTitle");
+
+                    b.Property<int?>("ModuleID");
+
+                    b.HasKey("LessonID");
+
+                    b.HasIndex("ModuleID");
+
+                    b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Module", b =>
+                {
+                    b.Property<int>("ModuleID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ModuleTitle");
+
+                    b.HasKey("ModuleID");
+
+                    b.ToTable("Modules");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.QuizModels.Quiz", b =>
                 {
                     b.Property<int>("QuizId")
@@ -285,6 +315,13 @@ namespace WebApplication3.Migrations
                     b.HasOne("WebApplication3.Models.Student")
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Lesson", b =>
+                {
+                    b.HasOne("WebApplication3.Models.ModuleModels.Module")
+                        .WithMany("Lessons")
+                        .HasForeignKey("ModuleID");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizQuestion", b =>

@@ -1,4 +1,6 @@
-
+@using WebApplication3.Models.ModuleModels;
+@using WebApplication3.ViewModels.AdminViewModels;
+@model LessonMakerViewModel
 @{
     ViewData["Title"] = "LessonMaker";
 }
@@ -6,15 +8,17 @@
 <h2>LessonMaker</h2>
 
 <div>
-    <form>
-        <input type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title Name" name="lessontitle"/>
-        <input type="submit" value="Submit" />
+    <form asp-controller="Admin" asp-action="LessonMaker" method="post" class="form-horizontal">
+        <a><strong>Module Title:    </strong></a><input asp-for="ModuleTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of connected Module." name="ModuleTitle" /><br/> <br/>
+        <a><strong>Lesson Name:     </strong></a><input asp-for="LessonTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of Lesson" name="LessonTitle" />
+        <br />
+        <br />
+        <input asp-for="LessonText" style="width: 800px; height: 400px" name="LessonText" placeholder="Input Lesson Text Here, but make sure to delete me!!!!!!"/>
+        <br />
+        <br />
+        <input type="submit" class="form-control-static" value="Create Lesson" />
         <br/>
         <br/>
     </form>
-    <textarea style="width: 800px; height: 400px" name="lessonText" >
-    Input Lesson Text Here, but make sure to delete me!!!!!!!
-    </textarea>
-    <br/>
 </div>
 

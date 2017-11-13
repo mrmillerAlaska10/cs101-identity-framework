@@ -63,6 +63,19 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    ModuleID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ModuleTitle = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.ModuleID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Quizzes",
                 columns: table => new
                 {
@@ -178,6 +191,27 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Lessons",
+                columns: table => new
+                {
+                    LessonID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LessonText = table.Column<string>(nullable: true),
+                    LessonTitle = table.Column<string>(nullable: true),
+                    ModuleID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lessons", x => x.LessonID);
+                    table.ForeignKey(
+                        name: "FK_Lessons_Modules_ModuleID",
+                        column: x => x.ModuleID,
+                        principalTable: "Modules",
+                        principalColumn: "ModuleID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QuizQuestions",
                 columns: table => new
                 {
@@ -268,6 +302,11 @@ namespace WebApplication3.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lessons_ModuleID",
+                table: "Lessons",
+                column: "ModuleID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_QuizQuestions_QuizId",
                 table: "QuizQuestions",
                 column: "QuizId");
@@ -294,6 +333,9 @@ namespace WebApplication3.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
+                name: "Lessons");
+
+            migrationBuilder.DropTable(
                 name: "QuizQuestions");
 
             migrationBuilder.DropTable(
@@ -304,6 +346,9 @@ namespace WebApplication3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Modules");
 
             migrationBuilder.DropTable(
                 name: "Quizzes");

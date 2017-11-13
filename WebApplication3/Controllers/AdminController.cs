@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Models.QuizModels;
+using WebApplication3.Models.ModuleModels;
 using WebApplication3.ViewModels.AdminViewModels;
 using WebApplication3.Data;
 
@@ -17,9 +18,21 @@ namespace WebApplication3.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ModuleMaker()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult ModuleMaker(ModuleMakerViewModel model)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Module module = new Module { ModuleTitle = model.ModuleTitle };
+
+            db.Add(module);
+            db.SaveChanges();
+            return View(model);
         }
 
         [HttpGet]
@@ -41,14 +54,26 @@ namespace WebApplication3.Controllers
                 db.Add(temp);
                 Counter++;
             }
-            db.Add(quiz);
+            db.Quizzes.Add(quiz);
             db.SaveChanges(); // maybe change to async
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult LessonMaker()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult LessonMaker(LessonMakerViewModel model)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Lesson lesson = new Lesson { LessonTitle = model.LessonTitle, LessonText = model.LessonText };
+
+            db.Lessons.Add(lesson);
+            db.SaveChanges();
+            return View(model);
         }
 
         public IActionResult StudentGrades()
