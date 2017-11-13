@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication3.Models.QuizModels;
+using WebApplication3.ViewModels.AdminViewModels;
+using WebApplication3.Data;
+
 
 namespace WebApplication3.Controllers
 {
@@ -18,8 +22,11 @@ namespace WebApplication3.Controllers
             return View();
         }
 
-        public IActionResult QuizMaker()
+        public IActionResult QuizMaker(QuizMakerViewModel model)
         {
+            //ApplicationDbContext db = new ApplicationDbContext();
+            //var quiz = new Quiz { Question = model.Question, Answer = model.Answer, MCOptions = model.MCOptions };
+
             return View();
         }
 

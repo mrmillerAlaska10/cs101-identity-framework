@@ -8,14 +8,12 @@ namespace WebApplication3.Models.QuizModels
 {
     public class Quiz
     {
-        [Required]
-        public int Id { get; set; }
-        [Required]       
+        public int QuizId { get; set; }
         public string QuizName { get; set; }
+        public string[] Question { get; set; }
+        public string[] Answer { get; set; }
+        public string[] MCOptions { get; set; }
 
-        [Required]      
-        public string Answer { get; set; }
-
-       
+        public ICollection<QuizQuestion> QuizQuestions { get; set; }
     }
 }

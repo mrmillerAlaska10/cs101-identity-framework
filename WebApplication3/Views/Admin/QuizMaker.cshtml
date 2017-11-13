@@ -1,53 +1,54 @@
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using WebApplication3.ViewModels
+@using WebApplication3.ViewModels.AdminViewModels
+@model QuizMakerViewModel
 
 @{
     ViewData["Title"] = "QuizMaker";
 }
 
-<h2>QuizMaker</h2>
-<br />
-<div>
-    <form>
-        <div class="row">
-            <div class="col-md-4">
-                Question 1:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Question 1" name="question1" /><br />
-                Question 2:<br />
-                <input type="text" style="width: 430px" placeholder="Enter Question 2" name="question2" /><br />
-                Question 3:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Question 3" name="question3" /><br />
-                Question 4:<br />
-                <input type="text" style="width: 430px" placeholder="Enter Question 4" name="question4" /><br />
-                Question 5:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Question 5" name="question5" /><br />
-                Question 6 (multiple choice):<br />
-                <input type="text" style="width: 430px" placeholder="Enter Question 6" /><br />
-                <input type="radio" name="choice6" />A<br />
-                <input type="radio" name="choice6" />B<br />
-                <input type="radio" name="choice6" />C<br />
-                <input type="radio" name="choice6" />D<br />
-                <br />
-                <br />
+
+
+<form asp-controller="Admin" asp-action="QuizMaker" method="post" class="form-horizontal">
+    <h4>Create a new quiz.</h4>
+    <hr />
+    <div class="col-md-5">
+        <section>
+            <div class="col-md-6; form-group">
+                <input asp-for="Question[1] " class="form-control" style="width: 350px" placeholder="Enter Question 1" name="question1" /><br />
+                <input asp-for="Question[2] " class="form-control" style="width: 350px" placeholder="Enter Question 2" name="question2" /><br />
+                <input asp-for="Question[3] " class="form-control" style="width: 350px" placeholder="Enter Question 3" name="question3" /><br />
+                <input asp-for="Question[4] " class="form-control" style="width: 350px" placeholder="Enter Question 4" name="question4" /><br />
+                <input asp-for="Question[5] " class="form-control" style="width: 350px" placeholder="Enter Question 5" name="question5" /><br />
+                <input asp-for="Question[6] " class="form-control" style="width: 350px" placeholder="Enter Multiple Choice Question 6" /><br />                   
+                <strong>Options for Multiple Choice Questions</strong><br/>
+                <input asp-for="MCOptions[1] " class="form-control" style="width: 350px" placeholder="Enter Answer Option 1" name="option1" /><br />
+                <input asp-for="MCOptions[2] " class="form-control" style="width: 350px" placeholder="Enter Answer Option 2" name="option2" /><br />
+                <input asp-for="MCOptions[3] " class="form-control" style="width: 350px" placeholder="Enter Answer Option 3" name="option3" /><br />
+                <input asp-for="MCOptions[4] " class="form-control" style="width: 350px" placeholder="Enter Answer Option 4" name="option4" /><br />
+                @*Need to include multiple choice options in the fillable form*@
             </div>
-            <div class="col-md-4">
-                Answer 1:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Answer 1" name="answer1" /><br />
-                Answer 2:<br />
-                <input type="text" style="width: 430px" placeholder="Enter Answer 2" name="answer2" /><br />
-                Answer 3:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Answer 3" name="answer3" /><br />
-                Answer 4:<br />
-                <input type="text" style="width: 430px" placeholder="Enter Answer 4" name="answer4" /><br />
-                Answer 5:<br>
-                <input type="text" style="width: 430px" placeholder="Enter Answer 5" name="answer5" /><br />
-                Answer 6:<br />
-                <input type="text" style="width: 430px" placeholder="Enter Answer 6" name="answer6" /><br />
+        </section>
+
+    </div>
+    <div class="col-md-6" style="margin-left: 20px">
+        <section>
+            <div class="form-group">
+                <input asp-for="Answer[1] " class="form-control" style="width: 350px" placeholder="Enter Answer 1" name="Answer1" /><br />
+                <input asp-for="Answer[2] " class="form-control" style="width: 350px" placeholder="Enter Answer 2" name="Answer2" /><br />
+                <input asp-for="Answer[3] " class="form-control" style="width: 350px" placeholder="Enter Answer 3" name="Answer3" /><br />
+                <input asp-for="Answer[4] " class="form-control" style="width: 350px" placeholder="Enter Answer 4" name="Answer4" /><br />
+                <input asp-for="Answer[5] " class="form-control" style="width: 350px" placeholder="Enter Answer 5" name="Answer5" /><br />
+                <input asp-for="Answer[6] " class="form-control" style="width: 350px" placeholder="Enter Multiple Choice Answer 6" /><br />
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <input type="submit" value="Submit" />
-            </div>
-        </div>
-    </form>
-</div>
+        </section>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="form-control" style="background-color: lavender" value="Create Quiz" /><br />
+    </div>
+</form>
+
 

@@ -7,19 +7,10 @@ using System.Threading.Tasks;
 
 namespace WebApplication3.Models.QuizModels
 {
-    public class QuestionModel
+    public class QuizQuestion
     {
-        [Required]
-        public int Id { get; set; }
-        [Required]
+        public int QuestionId { get; set; }
         public string Question { get; set; }
-
-        [Required]
         public string Answer { get; set; }
-
-        public int QuizFK { get; set; }
-
-        [ForeignKey("QuizFK")]
-        public Quiz QuizModel { get; set; }
     }
 }
