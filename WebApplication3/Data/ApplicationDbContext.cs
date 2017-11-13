@@ -34,7 +34,7 @@ namespace WebApplication3.Data
             builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CS101;Trusted_Connection=True;MultipleActiveResultSets=true");
             base.OnConfiguring(builder);
         }
-        public DbSet<QuestionModel> QuestionModel { get; set; }
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
 

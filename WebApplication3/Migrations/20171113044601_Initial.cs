@@ -63,17 +63,17 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Quiz",
+                name: "QuizQuestions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    QuestionId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Answer = table.Column<string>(nullable: false),
-                    QuizName = table.Column<string>(nullable: false)
+                    Answer = table.Column<string>(nullable: true),
+                    Question = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Quiz", x => x.Id);
+                    table.PrimaryKey("PK_QuizQuestions", x => x.QuestionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,27 +179,6 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QuestionModel",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Answer = table.Column<string>(nullable: false),
-                    Question = table.Column<string>(nullable: false),
-                    QuizFK = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QuestionModel", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_QuestionModel_Quiz_QuizFK",
-                        column: x => x.QuizFK,
-                        principalTable: "Quiz",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -267,11 +246,6 @@ namespace WebApplication3.Migrations
                 name: "IX_Courses_StudentId",
                 table: "Courses",
                 column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_QuestionModel_QuizFK",
-                table: "QuestionModel",
-                column: "QuizFK");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -295,7 +269,7 @@ namespace WebApplication3.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "QuestionModel");
+                name: "QuizQuestions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -305,9 +279,6 @@ namespace WebApplication3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
-
-            migrationBuilder.DropTable(
-                name: "Quiz");
         }
     }
 }

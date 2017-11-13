@@ -194,40 +194,18 @@ namespace WebApplication3.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.QuizModels.QuestionModel", b =>
+            modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizQuestion", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("QuestionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Answer")
-                        .IsRequired();
+                    b.Property<string>("Answer");
 
-                    b.Property<string>("Question")
-                        .IsRequired();
+                    b.Property<string>("Question");
 
-                    b.Property<int>("QuizFK");
+                    b.HasKey("QuestionId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuizFK");
-
-                    b.ToTable("QuestionModel");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.QuizModels.Quiz", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Answer")
-                        .IsRequired();
-
-                    b.Property<string>("QuizName")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Quiz");
+                    b.ToTable("QuizQuestions");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Student", b =>
@@ -290,14 +268,6 @@ namespace WebApplication3.Migrations
                     b.HasOne("WebApplication3.Models.Student")
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.QuizModels.QuestionModel", b =>
-                {
-                    b.HasOne("WebApplication3.Models.QuizModels.Quiz", "QuizModel")
-                        .WithMany()
-                        .HasForeignKey("QuizFK")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
