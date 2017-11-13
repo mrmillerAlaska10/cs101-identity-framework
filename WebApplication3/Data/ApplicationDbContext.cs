@@ -37,7 +37,7 @@ namespace WebApplication3.Data
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
-
+        public DbSet<Models.Lesson.Module> Modules { get; set; }
 
     }
 
