@@ -6,19 +6,29 @@
 }
 
 <h2>LessonMaker</h2>
-
-<div>
+<hr style="background-color: lavender"/>
+<div class="col-md-10">
     <form asp-controller="Admin" asp-action="LessonMaker" method="post" class="form-horizontal">
-        <a><strong>Module Title:    </strong></a><input asp-for="ModuleTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of connected Module." name="ModuleTitle" /><br/> <br/>
-        <a><strong>Lesson Name:     </strong></a><input asp-for="LessonTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of Lesson" name="LessonTitle" />
-        <br />
-        <br />
-        <input asp-for="LessonText" style="width: 800px; height: 400px" name="LessonText" placeholder="Input Lesson Text Here, but make sure to delete me!!!!!!"/>
-        <br />
-        <br />
-        <input type="submit" class="form-control-static" value="Create Lesson" />
+        @*<a><strong>Module Title:    </strong></a><input asp-for="ModuleTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of connected Module." name="ModuleTitle" /><br/> <br/>*@
+        <a><strong>Module Number:</strong></a><input asp-for="ModuleNumber" type="text" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Module Number" name="ModuleNumber" />
+        <a><strong>Lesson Title:</strong></a><input asp-for="LessonTitle" type="text" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Title of Lesson" name="LessonTitle" />
+        <a><strong>Lesson Number:</strong></a><input asp-for="LessonNumber" type="number" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Lesson Number" name="LessonNumber" />
+        
         <br/>
         <br/>
+        <textarea class="ckeditor" name="LessonText"></textarea>
+        <input type="submit" value="Submit" />
     </form>
 </div>
+@*@using (Html.BeginForm("LessonMaker", "Admin"))
+{
+    @Html.TextAreaFor(m => m.LessonText)
+   
+}*@
+
+<script>
+    $(function () {
+        $('#LessonText').ckeditor();
+    });
+</script>
 

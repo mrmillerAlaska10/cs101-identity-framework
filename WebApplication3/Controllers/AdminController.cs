@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Models.QuizModels;
 using WebApplication3.Models.ModuleModels;
+using WebApplication3.Models;
 using WebApplication3.ViewModels.AdminViewModels;
 using WebApplication3.Data;
 
@@ -36,6 +37,23 @@ namespace WebApplication3.Controllers
         }
 
         [HttpGet]
+        public IActionResult CourseMaker()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CourseMaker(CourseMakerViewModel model)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Course module = new Course { ClassSize = model.ClassSize, ClassLimit = model.ClassLimit, CourseName = model.CourseName, InstructorName = model.InstructorName };
+
+            db.Add(module);
+            db.SaveChanges();
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult QuizMaker()
         {
             return View();
@@ -46,11 +64,11 @@ namespace WebApplication3.Controllers
         {
             int Counter = 0;
             ApplicationDbContext db = new ApplicationDbContext();
-            var quiz = new Quiz { QuizName = model.QuizName };
+            var quiz = new Quiz { QuizName = model.QuizName, LessonNumber = model.LessonNumber };
 
             foreach ( var question in model.Question)
             {
-                QuizQuestion temp = new QuizQuestion { Question = model.Question[Counter], Answer = model.Answer[Counter] };
+                QuizQuestion temp = new QuizQuestion { Question = model.Question[Counter], Answer = model.Answer[Counter], LessonNumber = model.LessonNumber };
                 db.Add(temp);
                 Counter++;
             }
@@ -69,7 +87,7 @@ namespace WebApplication3.Controllers
         public IActionResult LessonMaker(LessonMakerViewModel model)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            Lesson lesson = new Lesson { LessonTitle = model.LessonTitle, LessonText = model.LessonText };
+            Lesson lesson = new Lesson { LessonTitle = model.LessonTitle, LessonText = model.LessonText, LessonNumber = model.LessonNumber, ModuleNumber = model.ModuleNumber };
 
             db.Lessons.Add(lesson);
             db.SaveChanges();

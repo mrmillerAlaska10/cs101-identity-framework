@@ -10,9 +10,7 @@ namespace WebApplication3.Models.QuizModels
     {
         public int QuizId { get; set; }
         public string QuizName { get; set; }
-        //public List<string> Questions { get; set; }
-        //public List<string> Answers { get; set; }
-        //public List<string> MCOptions { get; set; }
+        public int LessonNumber { get; set; }
 
         public ICollection<QuizQuestion> QuizQuestions { get; set; }
     }

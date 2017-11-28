@@ -1,0 +1,25 @@
+@model IEnumerable<WebApplication3.Models.ModuleModels.Lesson>
+
+@{
+    ViewData["Title"] = "Module";
+}
+
+<h2>Module</h2>
+@*<a>List of Lessons</a>*@
+<div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                Lesson @Html.DisplayFor(modelItem => item.LessonID):
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LessonTitle)
+            </td>
+            @*<td>
+                    @Html.Raw(item.LessonText)
+                </td>*@
+        </tr>
+        <br />
+    }
+</div>

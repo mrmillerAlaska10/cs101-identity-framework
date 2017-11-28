@@ -11,7 +11,9 @@ namespace WebApplication3.Models.ModuleModels
     {
         [Key]
         public int ModuleID { get; set; }
+        public int ModuleNumber { get; set; }
         public string ModuleTitle { get; set; }
+        public int CourseID { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
     }
 }

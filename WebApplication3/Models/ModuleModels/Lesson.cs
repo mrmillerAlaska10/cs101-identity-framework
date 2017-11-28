@@ -10,7 +10,8 @@ namespace WebApplication3.Models.ModuleModels
     {
         [Key]
         public int LessonID { get; set; }
-        public string ModuleTitle { get; set; }
+        public int ModuleNumber { get; set; }
+        public int LessonNumber { get; set; } // helps differentiate between lessons inside of each module
         public string LessonTitle { get; set; }
         public string LessonText { get; set; }//unformated. Format in js
     }

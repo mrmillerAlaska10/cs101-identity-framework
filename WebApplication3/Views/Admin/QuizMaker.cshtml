@@ -10,14 +10,17 @@
 }
 
 
-
+<h2>Quiz Maker</h2>
 <form asp-controller="Admin" asp-action="QuizMaker" method="post" class="form-horizontal">
     <h4>Create a new quiz.</h4>
     <hr />
+    <strong>Lesson Number: </strong> <input asp-for="LessonNumber" class="form-control" style="width: 350px" placeholder="Enter Lesson Number" name="LessonNumber" /><br />
+    <strong>Quiz Title: </strong> <input asp-for="QuizName" class="form-control" style="width: 350px" placeholder="Enter Name of this Quiz" name="QuizName" /><br /><hr /><br />
+
     <div class="col-md-5">
         <section>
             <div class="col-md-6; form-group">
-                <input asp-for="Question[0] " class="form-control" style="width: 350px" placeholder="Enter Question 1" name="Question[0]" /><br />
+                <strong>Questions: </strong><input asp-for="Question[0] " class="form-control" style="width: 350px" placeholder="Enter Question 1" name="Question[0]" /><br />
                 <input asp-for="Question[1] " class="form-control" style="width: 350px" placeholder="Enter Question 2" name="Question[1]" /><br />
                 <input asp-for="Question[2] " class="form-control" style="width: 350px" placeholder="Enter Question 3" name="Question[2]" /><br />
                 <input asp-for="Question[3] " class="form-control" style="width: 350px" placeholder="Enter Question 4" name="Question[3]" /><br />
@@ -31,12 +34,11 @@
                 @*Need to include multiple choice options in the fillable form*@
             </div>
         </section>
-
     </div>
     <div class="col-md-6" style="margin-left: 20px">
         <section>
             <div class="form-group">
-                <input asp-for="Answer[0] " class="form-control" style="width: 350px" placeholder="Enter Answer 1" name="Answer[0]" /><br />
+                <strong>Answers: </strong><input asp-for="Answer[0] " class="form-control" style="width: 350px" placeholder="Enter Answer 1" name="Answer[0]" /><br />
                 <input asp-for="Answer[1] " class="form-control" style="width: 350px" placeholder="Enter Answer 2" name="Answer[1]" /><br />
                 <input asp-for="Answer[2] " class="form-control" style="width: 350px" placeholder="Enter Answer 3" name="Answer[2]" /><br />
                 <input asp-for="Answer[3] " class="form-control" style="width: 350px" placeholder="Enter Answer 4" name="Answer[3]" /><br />

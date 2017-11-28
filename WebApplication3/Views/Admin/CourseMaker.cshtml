@@ -1,0 +1,30 @@
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using WebApplication3.ViewModels
+@using WebApplication3.ViewModels.AdminViewModels
+@model CourseMakerViewModel
+
+@{
+    ViewData["Title"] = "CourseMaker";
+}
+<h2>CourseMaker</h2>
+
+<form asp-controller="Admin" asp-action="CourseMaker" method="post" class="form-horizontal">
+    <h4>Create a new quiz.</h4>
+    <hr />
+    <div class="col-md-5">
+        <section>
+            <div class="col-md-6; form-group">
+                <input asp-for="ClassSize" class="form-control" style="width: 350px" placeholder="Enter Question 1" name="ClassSize" /><br />
+                <input asp-for="ClassLimit" class="form-control" style="width: 350px" placeholder="Enter Question 2" name="ClassLimit" /><br />
+                <input asp-for="CourseName" class="form-control" style="width: 350px" placeholder="Enter Question 3" name="CourseName" /><br />
+                <input asp-for="InstructorName" class="form-control" style="width: 350px" placeholder="Enter Question 4" name="InstrutorName" /><br />
+                @*<input asp-for="Question[4] " class="form-control" style="width: 350px" placeholder="Enter Question 5" name="Question[4]" /><br />*@
+            </div>
+        </section>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="form-control" style="background-color: lavender" value="Create Quiz" /><br />
+    </div>
+</form>

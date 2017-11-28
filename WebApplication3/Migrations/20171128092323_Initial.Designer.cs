@@ -8,7 +8,7 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171113220415_Initial")]
+    [Migration("20171128092323_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,7 +173,7 @@ namespace WebApplication3.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.Course", b =>
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Course", b =>
                 {
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd();
@@ -200,11 +200,15 @@ namespace WebApplication3.Migrations
                     b.Property<int>("LessonID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("LessonNumber");
+
                     b.Property<string>("LessonText");
 
                     b.Property<string>("LessonTitle");
 
                     b.Property<int?>("ModuleID");
+
+                    b.Property<int>("ModuleNumber");
 
                     b.HasKey("LessonID");
 
@@ -218,9 +222,15 @@ namespace WebApplication3.Migrations
                     b.Property<int>("ModuleID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CourseID");
+
+                    b.Property<int>("ModuleNumber");
+
                     b.Property<string>("ModuleTitle");
 
                     b.HasKey("ModuleID");
+
+                    b.HasIndex("CourseID");
 
                     b.ToTable("Modules");
                 });
@@ -229,6 +239,8 @@ namespace WebApplication3.Migrations
                 {
                     b.Property<int>("QuizId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("LessonNumber");
 
                     b.Property<string>("QuizName");
 
@@ -310,7 +322,7 @@ namespace WebApplication3.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.Course", b =>
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Course", b =>
                 {
                     b.HasOne("WebApplication3.Models.Student")
                         .WithMany("Courses")
@@ -322,6 +334,14 @@ namespace WebApplication3.Migrations
                     b.HasOne("WebApplication3.Models.ModuleModels.Module")
                         .WithMany("Lessons")
                         .HasForeignKey("ModuleID");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Module", b =>
+                {
+                    b.HasOne("WebApplication3.Models.ModuleModels.Course")
+                        .WithMany("modules")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApplication3.Models.QuizModels.QuizQuestion", b =>
