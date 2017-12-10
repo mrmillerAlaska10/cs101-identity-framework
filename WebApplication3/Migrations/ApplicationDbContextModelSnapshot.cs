@@ -239,9 +239,13 @@ namespace WebApplication3.Migrations
                     b.Property<int>("QuizId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("LessonID");
+
                     b.Property<int>("LessonNumber");
 
                     b.Property<string>("QuizName");
+
+                    b.Property<int>("QuizNumber");
 
                     b.HasKey("QuizId");
 
@@ -257,11 +261,11 @@ namespace WebApplication3.Migrations
 
                     b.Property<string>("Question");
 
-                    b.Property<int?>("QuizId");
+                    b.Property<int>("QuizID");
 
                     b.HasKey("QuestionId");
 
-                    b.HasIndex("QuizId");
+                    b.HasIndex("QuizID");
 
                     b.ToTable("QuizQuestions");
                 });
@@ -338,7 +342,7 @@ namespace WebApplication3.Migrations
             modelBuilder.Entity("WebApplication3.Models.ModuleModels.Module", b =>
                 {
                     b.HasOne("WebApplication3.Models.ModuleModels.Course")
-                        .WithMany("modules")
+                        .WithMany("Modules")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -347,7 +351,8 @@ namespace WebApplication3.Migrations
                 {
                     b.HasOne("WebApplication3.Models.QuizModels.Quiz")
                         .WithMany("QuizQuestions")
-                        .HasForeignKey("QuizId");
+                        .HasForeignKey("QuizID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

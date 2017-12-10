@@ -11,20 +11,19 @@
 <h2>CourseMaker</h2>
 
 <form asp-controller="Admin" asp-action="CourseMaker" method="post" class="form-horizontal">
-    <h4>Create a new quiz.</h4>
+    <h4>Create a new course.</h4>
     <hr />
     <div class="col-md-5">
         <section>
             <div class="col-md-6; form-group">
-                <input asp-for="ClassSize" class="form-control" style="width: 350px" placeholder="Enter Question 1" name="ClassSize" /><br />
-                <input asp-for="ClassLimit" class="form-control" style="width: 350px" placeholder="Enter Question 2" name="ClassLimit" /><br />
-                <input asp-for="CourseName" class="form-control" style="width: 350px" placeholder="Enter Question 3" name="CourseName" /><br />
-                <input asp-for="InstructorName" class="form-control" style="width: 350px" placeholder="Enter Question 4" name="InstrutorName" /><br />
-                @*<input asp-for="Question[4] " class="form-control" style="width: 350px" placeholder="Enter Question 5" name="Question[4]" /><br />*@
+                <strong>Course Name: </strong><input asp-for="CourseName" class="form-control" style="width: 350px" placeholder="Enter Course Name" name="CourseName" /><br />
+                <strong>Class Size: </strong><input asp-for="ClassSize" class="form-control" style="width: 350px" placeholder="Enter Class Size" name="ClassSize" /><br />
+                <strong>Class Limit: </strong> <input asp-for="ClassLimit" class="form-control" style="width: 350px" placeholder="Enter Maximum Class Size" name="ClassLimit" /><br />
+                <strong>Insturctor's Name: </strong> <input asp-for="InstructorName" class="form-control" style="width: 350px" placeholder="Enter Instructor's Name" name="InstructorName" /><br />
             </div>
         </section>
     </div>
     <div class="form-group">
-        <input type="submit" class="form-control" style="background-color: lavender" value="Create Quiz" /><br />
+        <input type="submit" class="form-control" style="background-color: lavender" value="Create Course" /><br />
     </div>
 </form>

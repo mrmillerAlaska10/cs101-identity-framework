@@ -121,7 +121,7 @@ namespace WebApplication3.Controllers
                 ApplicationDbContext db = new ApplicationDbContext();
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                Student student = new Student { FirstName = model.FirstName, LastName = model.LastName, StudentId = model.ID };
+                Student student = new Student { FirstName = model.FirstName, LastName = model.LastName, StudentId = model.ID, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 db.Students.Add(student);
                 db.SaveChanges();

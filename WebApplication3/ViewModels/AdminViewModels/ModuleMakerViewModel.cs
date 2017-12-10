@@ -8,5 +8,7 @@ namespace WebApplication3.ViewModels.AdminViewModels
     public class ModuleMakerViewModel
     {
         public string ModuleTitle { get; set; }
+        public int ModuleNumber { get; set; }
+        public int CourseID { get; set; }
     }
 }

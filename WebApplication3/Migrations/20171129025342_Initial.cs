@@ -68,8 +68,10 @@ namespace WebApplication3.Migrations
                 {
                     QuizId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LessonID = table.Column<int>(nullable: false),
                     LessonNumber = table.Column<int>(nullable: false),
-                    QuizName = table.Column<string>(nullable: true)
+                    QuizName = table.Column<string>(nullable: true),
+                    QuizNumber = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -186,17 +188,17 @@ namespace WebApplication3.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Answer = table.Column<string>(nullable: true),
                     Question = table.Column<string>(nullable: true),
-                    QuizId = table.Column<int>(nullable: true)
+                    QuizID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuizQuestions", x => x.QuestionId);
                     table.ForeignKey(
-                        name: "FK_QuizQuestions_Quizzes_QuizId",
-                        column: x => x.QuizId,
+                        name: "FK_QuizQuestions_Quizzes_QuizID",
+                        column: x => x.QuizID,
                         principalTable: "Quizzes",
                         principalColumn: "QuizId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -323,9 +325,9 @@ namespace WebApplication3.Migrations
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_QuizQuestions_QuizId",
+                name: "IX_QuizQuestions_QuizID",
                 table: "QuizQuestions",
-                column: "QuizId");
+                column: "QuizID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

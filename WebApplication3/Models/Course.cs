@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication3.Models;
-
 using WebApplication3.Models.ModuleModels;
 
-namespace WebApplication3.Models.ModuleModels
+namespace WebApplication3.Models
 {
     public class Course
     {
@@ -18,6 +16,6 @@ namespace WebApplication3.Models.ModuleModels
         public string CourseName { get; set; }
         public string InstructorName { get; set; }
 
-        public ICollection<Module> modules { get; set; }
+        public ICollection<Module> Modules { get; set; }
     }
 }

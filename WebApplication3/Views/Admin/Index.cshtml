@@ -4,32 +4,35 @@
 }
 
 <h2>Welcome to the Admin Homepage</h2>
-
+<hr />
 <div>
-    <div>
+    <div class="col-md-5">
         You'll be able to create new Lessons.
-        <button>Create Lesson</button>
+        <form action="~/LessonMaker">
+            <input class="form-control" type="submit" value="Create Lesson" />
+        </form>        
         <br />
     </div>
-    <div>
+    <div class="col-md-5">
         You'll be able to create new Modules.
-        <button>Create Module</button>
+        <form action="~/ModuleMaker">
+            <input class="form-control" type="submit" value="Create Lesson" />
+        </form> 
         <br />
     </div>
-    <div>
+    <div class="col-md-5">
         You'll be able to create new Quizzes.
-        <button>Create Quiz</button>
+        <form action="~/QuizMaker">
+            <input class="form-control" type="submit" value="Create Lesson" />
+        </form> 
         <br />
     </div>
-    <div>
+    <div class="col-md-5">
         You'll be able to create view Students.
-        <button>View Students</button>
+        <form action="~/StudentGrades">
+            <input class="form-control" type="submit" value="Create Lesson" />
+        </form> 
     </div>
-    @*You'll be able to create new Modules.
-    <button>Create Module</button>
-    You'll be able to create new Quizzes.
-    <button>Create Quiz</button>
-    You'll be able to view students
-    <button>View Students</button>*@
+  
 </div>
 

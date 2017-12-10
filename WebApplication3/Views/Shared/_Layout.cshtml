@@ -1,16 +1,20 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject SignInManager<ApplicationUser> SignInManager
+
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link href="~/css/site.css" rel="stylesheet" />    
+    <link href="~/css/site.css" rel="stylesheet" />
     @*@@Scripts.Render("~/bundles/jquery") add to minimized javascript sheet to save on bandwith when loading pages*@
-        <script src="~/bundles/jquery.js" type="text/javascript"></script>
-        <script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.4/adapters/jquery.js"></script>
-    </head>
+    <script src="~/bundles/jquery.js" type="text/javascript"></script>
+    <script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.4/adapters/jquery.js"></script>
+</head>
+@if (SignInManager.IsSignedIn(User))
+{
     <body>
         <div class="container">
             <div class="row">
@@ -22,12 +26,43 @@
             </div>
             <div class="row" id="headerbar">
 
-                    @Html.Partial("Components/Navbar")
+                @Html.Partial("Components/Navbar")
 
             </div>
             <div id="row">
 
-                    @Html.Partial("Components/Sidebar")
+                @Html.Partial("Components/Sidebar")
+
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+            </div>
+            <div id="row">
+                @Html.Partial("Components/Footer")
+            </div>
+        </div>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+}
+else
+{
+    <body>
+        <div class="container">
+            <div class="row">
+                <div id="header">
+                    <div id="title">
+                        <h1>@Html.Partial("Components/Header")</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="headerbar">
+
+                @Html.Partial("Components/Navbar")
+            </div>
+            <div id="row">
+
+                @*@Html.Partial("Components/Sidebar")*@
 
 
                 <div class="col-md-9">
@@ -41,4 +76,5 @@
 
         @RenderSection("Scripts", required: false)
     </body>
-    </html>
+}
+</html>

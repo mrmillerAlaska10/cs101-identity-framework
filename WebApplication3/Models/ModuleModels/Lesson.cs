@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication3.Models.QuizModels;
 
 namespace WebApplication3.Models.ModuleModels
 {
