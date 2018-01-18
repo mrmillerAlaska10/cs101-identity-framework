@@ -8,8 +8,8 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171129025342_Initial")]
-    partial class Initial
+    [Migration("20180118020449_mg")]
+    partial class mg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,7 +173,7 @@ namespace WebApplication3.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Course", b =>
+            modelBuilder.Entity("WebApplication3.Models.Course", b =>
                 {
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd();
@@ -326,7 +326,7 @@ namespace WebApplication3.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.ModuleModels.Course", b =>
+            modelBuilder.Entity("WebApplication3.Models.Course", b =>
                 {
                     b.HasOne("WebApplication3.Models.Student")
                         .WithMany("Courses")
@@ -342,7 +342,7 @@ namespace WebApplication3.Migrations
 
             modelBuilder.Entity("WebApplication3.Models.ModuleModels.Module", b =>
                 {
-                    b.HasOne("WebApplication3.Models.ModuleModels.Course")
+                    b.HasOne("WebApplication3.Models.Course")
                         .WithMany("Modules")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade);

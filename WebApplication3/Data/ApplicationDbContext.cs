@@ -51,14 +51,14 @@ namespace WebApplication3.Data
         {
             // Perform database delete and create
            // context.Database.EnsureDeleted();
-          //  context.Database.EnsureCreated();
+           // context.Database.EnsureCreated();
 
             // Perform seed operations
-           // AddRoles(context);
+            AddRoles(context);
 
             // Save changes and release resources
-           // context.SaveChanges();
-          //  context.Dispose();
+            context.SaveChanges();
+            context.Dispose();
         }
 
         private static void AddRoles(ApplicationDbContext context)
@@ -68,8 +68,9 @@ namespace WebApplication3.Data
                  new IdentityRole { Name = "admin" }
                 );
             context.AddRange(
-                new ApplicationUser { Email = "admin@myemail.com", UserName = "admin" },
-                 new ApplicationUser { Email = "admin@myemail.com", UserName = "bob saget" }
+                new ApplicationUser { Email = "admin@myemail.com", UserName = "admin", PasswordHash="password"}
+
+                 //new ApplicationUser { Email = "admin@myemail.com", UserName = "bob saget" }
             );
            
 

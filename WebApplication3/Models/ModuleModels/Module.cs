@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication3.Models.ModuleModels
 {
-    
+
     public class Module
     {
         [Key]
@@ -15,5 +15,8 @@ namespace WebApplication3.Models.ModuleModels
         public string ModuleTitle { get; set; }
         public int CourseID { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
+
+        public int GetCompletion(int studentID) {return 0 }
+        public int AddCompletion(int studentID, int percent) {return 0 }
     }
 }
