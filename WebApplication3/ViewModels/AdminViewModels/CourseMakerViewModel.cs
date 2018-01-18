@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication3.Models.ModuleModels;
 
-namespace WebApplication3.Models
+namespace WebApplication3.ViewModels.AdminViewModels
 {
-    public class Course
+    public class CourseMakerViewModel
     {
         public int CourseId { get; set; }
         public int ClassSize { get; set; }
         public int ClassLimit { get; set; }
-        //meeting time
-        //other variables
         public string CourseName { get; set; }
         public string InstructorName { get; set; }
-
-        public ICollection<Module> Modules { get; set; }
     }
 }

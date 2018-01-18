@@ -1,20 +1,30 @@
-
+@using WebApplication3.Models.ModuleModels;
+@using WebApplication3.ViewModels.AdminViewModels;
+@model LessonMakerViewModel
 @{
     ViewData["Title"] = "LessonMaker";
 }
 
 <h2>LessonMaker</h2>
-
-<div>
-    <form>
-        <input type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title Name" name="lessontitle"/>
+<hr style="background-color: lavender"/>
+<div class="col-md-10">
+    <form asp-controller="Admin" asp-action="LessonMaker" method="post" class="form-horizontal">
+        @*<a><strong>Module Title:    </strong></a><input asp-for="ModuleTitle" type="text" style="width: 300px; margin-right: auto" placeholder="Enter Title of connected Module." name="ModuleTitle" /><br/> <br/>*@
+        <a><strong>Module Number:</strong></a><input asp-for="ModuleNumber" type="text" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Module Number" name="ModuleNumber" />
+        <a><strong>Lesson Title:</strong></a><input asp-for="LessonTitle" type="text" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Title of Lesson" name="LessonTitle" />
+        <a><strong>Lesson Number:</strong></a><input asp-for="LessonNumber" type="number" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Lesson Number" name="LessonNumber" />
+        
+        <br/>
+        <br/>
+        <textarea class="ckeditor" name="LessonText"></textarea>
         <input type="submit" value="Submit" />
-        <br/>
-        <br/>
     </form>
-    <textarea style="width: 800px; height: 400px" name="lessonText" >
-    Input Lesson Text Here, but make sure to delete me!!!!!!!
-    </textarea>
-    <br/>
 </div>
+
+
+<script>
+    $(function () {
+        $('#LessonText').ckeditor();
+    });
+</script>
 

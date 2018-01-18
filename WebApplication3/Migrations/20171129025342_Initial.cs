@@ -63,17 +63,19 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QuizQuestions",
+                name: "Quizzes",
                 columns: table => new
                 {
-                    QuestionId = table.Column<int>(nullable: false)
+                    QuizId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Answer = table.Column<string>(nullable: true),
-                    Question = table.Column<string>(nullable: true)
+                    LessonID = table.Column<int>(nullable: false),
+                    LessonNumber = table.Column<int>(nullable: false),
+                    QuizName = table.Column<string>(nullable: true),
+                    QuizNumber = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QuizQuestions", x => x.QuestionId);
+                    table.PrimaryKey("PK_Quizzes", x => x.QuizId);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,6 +181,27 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuizQuestions",
+                columns: table => new
+                {
+                    QuestionId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Answer = table.Column<string>(nullable: true),
+                    Question = table.Column<string>(nullable: true),
+                    QuizID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuizQuestions", x => x.QuestionId);
+                    table.ForeignKey(
+                        name: "FK_QuizQuestions_Quizzes_QuizID",
+                        column: x => x.QuizID,
+                        principalTable: "Quizzes",
+                        principalColumn: "QuizId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -198,6 +221,50 @@ namespace WebApplication3.Migrations
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "StudentId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    ModuleID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CourseID = table.Column<int>(nullable: false),
+                    ModuleNumber = table.Column<int>(nullable: false),
+                    ModuleTitle = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.ModuleID);
+                    table.ForeignKey(
+                        name: "FK_Modules_Courses_CourseID",
+                        column: x => x.CourseID,
+                        principalTable: "Courses",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lessons",
+                columns: table => new
+                {
+                    LessonID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LessonNumber = table.Column<int>(nullable: false),
+                    LessonText = table.Column<string>(nullable: true),
+                    LessonTitle = table.Column<string>(nullable: true),
+                    ModuleID = table.Column<int>(nullable: true),
+                    ModuleNumber = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lessons", x => x.LessonID);
+                    table.ForeignKey(
+                        name: "FK_Lessons_Modules_ModuleID",
+                        column: x => x.ModuleID,
+                        principalTable: "Modules",
+                        principalColumn: "ModuleID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -246,6 +313,21 @@ namespace WebApplication3.Migrations
                 name: "IX_Courses_StudentId",
                 table: "Courses",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lessons_ModuleID",
+                table: "Lessons",
+                column: "ModuleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Modules_CourseID",
+                table: "Modules",
+                column: "CourseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuizQuestions_QuizID",
+                table: "QuizQuestions",
+                column: "QuizID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -266,7 +348,7 @@ namespace WebApplication3.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "Lessons");
 
             migrationBuilder.DropTable(
                 name: "QuizQuestions");
@@ -276,6 +358,15 @@ namespace WebApplication3.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Modules");
+
+            migrationBuilder.DropTable(
+                name: "Quizzes");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Students");

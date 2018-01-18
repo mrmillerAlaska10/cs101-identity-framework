@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Models;
 using WebApplication3.Models.QuizModels;
+using WebApplication3.Models.ModuleModels;
 
 namespace WebApplication3.Data
 {
@@ -34,10 +35,13 @@ namespace WebApplication3.Data
             builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CS101;Trusted_Connection=True;MultipleActiveResultSets=true");
             base.OnConfiguring(builder);
         }
+
+        public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
-        public DbSet<Models.Lesson.Module> Modules { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
 
     }
 

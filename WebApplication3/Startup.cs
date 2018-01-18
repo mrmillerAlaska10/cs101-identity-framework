@@ -85,8 +85,8 @@ namespace WebApplication3
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "Account",
+                    template: "{controller=Home}/{action=Login}/{id?}");
 
                 routes.MapRoute("About", "About",
                  new { controller = "Home", action = "About" });

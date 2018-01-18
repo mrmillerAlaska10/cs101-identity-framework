@@ -2,6 +2,8 @@
 {
     margin-right: 30%;
     margin-left: 10%;
+    /*border: solid;
+    border-width: 2px;*/
 }
 #headerbar {   
     background-color: #006E57;
@@ -35,6 +37,5 @@ tr:nth-child(even) {
 }
 
 .subsection sub {
-    display:block;
-    
+    display:block; 
 }

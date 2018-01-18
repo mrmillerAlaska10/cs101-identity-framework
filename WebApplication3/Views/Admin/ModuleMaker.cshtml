@@ -1,15 +1,16 @@
-@using System.Collections.Generic
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@using WebApplication3.ViewModels
-@using WebApplication3.ViewModels.AdminViewModels
-@model ModuleMakerViewModule
-
-
-
+@using WebApplication3.Models.ModuleModels;
+@using WebApplication3.ViewModels.AdminViewModels;
+@model ModuleMakerViewModel
 @{
     ViewData["Title"] = "ModuleMaker";
 }
 
 <h2>ModuleMaker</h2>
-
+<hr /> 
+<form asp-controller="Admin" asp-action="ModuleMaker" method="post" class="form-horizontal">
+    <strong>Course ID: </strong><input asp-for="CourseID" type="text" class="form-control" style="width: 300px; margin-right: auto;" placeholder="Enter Course Number" name="CourseID" /><br />
+    <strong>Module Number: </strong><input asp-for="ModuleNumber" type="text" class="dropdown" style="width: 300px; margin-right: auto" placeholder="Enter Module Number" name="ModuleNumber" /><br />
+    <strong>Module Title: </strong><input asp-for="ModuleTitle" type="text" class="form-control" style="width: 300px; margin-right: auto" placeholder="Enter Module Title" name="ModuleTitle" /><br />
+     <br />
+    <input type="submit" class="form-control" value="Create Module" />
+</form>
