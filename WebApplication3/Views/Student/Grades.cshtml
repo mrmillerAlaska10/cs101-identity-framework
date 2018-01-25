@@ -1,0 +1,20 @@
+
+    <h2>Grade</h2>
+@{var gradearr = (dynamic)@ViewData["grades"];}
+@{var lessonarr = (dynamic)@ViewData["lessons"];}
+@foreach (Grade item in gradearr)
+{
+    @if (item.StudentId == (int)@ViewData["student_id"])
+    {
+        <div>
+            <!–– Need to figure out how to spellcheck lesson id without needing offset  ––>
+                @lessonarr[@item.LessonId - 3].LessonTitle 
+                :
+                @item.grade
+</div>
+        <br />
+    }
+}
+
+
+

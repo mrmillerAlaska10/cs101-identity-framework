@@ -17,5 +17,6 @@ namespace WebApplication3.Models
         public string InstructorName { get; set; }
 
         public ICollection<Module> Modules { get; set; }
+       public ICollection<Student> Enrolled { get; set; }
     }
 }

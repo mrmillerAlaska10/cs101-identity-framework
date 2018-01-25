@@ -42,6 +42,7 @@ namespace WebApplication3.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Grade> Grades { get; set; }
 
     }
 
@@ -54,11 +55,11 @@ namespace WebApplication3.Data
            // context.Database.EnsureCreated();
 
             // Perform seed operations
-            AddRoles(context);
+            //AddRoles(context);
 
             // Save changes and release resources
-            context.SaveChanges();
-            context.Dispose();
+            //context.SaveChanges();
+            //context.Dispose();
         }
 
         private static void AddRoles(ApplicationDbContext context)

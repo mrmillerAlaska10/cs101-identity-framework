@@ -14,7 +14,7 @@ namespace WebApplication3.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Module> Courses { get; set; }
         
     }
 }

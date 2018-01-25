@@ -34,5 +34,16 @@ namespace WebApplication3.Controllers
         {
             return View();
         }
+
+        public IActionResult Grades(int id)
+        {
+            var entities = new ApplicationDbContext();
+            //var Grades = 
+            int sID = id;
+            ViewData["grades"] = entities.Grades.ToList();
+            ViewData["student_id"] = sID;
+            ViewData["lessons"] = entities.Lessons.ToList();
+            return View(ViewData);
+        }
     }
 }
