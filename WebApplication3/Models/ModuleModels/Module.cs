@@ -9,6 +9,7 @@ namespace WebApplication3.Models.ModuleModels
 
     public class Module
     {
+        
         [Key]
         public int ModuleID { get; set; }
         public int ModuleNumber { get; set; }
@@ -18,5 +19,7 @@ namespace WebApplication3.Models.ModuleModels
 
         public int GetCompletion(int studentID) { return 0; }
         public int AddCompletion(int studentID, int percent) { return 0; }
+
+        public virtual ICollection<StudentModuleModel> Students { get; set; }
     }
 }

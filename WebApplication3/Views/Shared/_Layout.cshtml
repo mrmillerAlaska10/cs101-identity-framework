@@ -29,8 +29,8 @@
 
             </div>
             <div id="row">
-
-                @Html.Partial("Components/Sidebar")
+                @await Component.InvokeAsync("SideBar")
+               
 
                 <div class="col-md-9">
                     @RenderBody()

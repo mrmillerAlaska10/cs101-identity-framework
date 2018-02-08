@@ -114,9 +114,9 @@ namespace WebApplication3.Controllers
         public IActionResult LessonMaker(LessonMakerViewModel model)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            Lesson lesson = new Lesson { LessonTitle = model.LessonTitle, LessonText = model.LessonText, LessonNumber = model.LessonNumber, ModuleNumber = model.ModuleNumber };
+            Lesson lesson = new Lesson { LessonTitle = model.LessonTitle, LessonText = model.LessonText, LessonNumber = model.LessonNumber};
             Module module;
-            using (db) { module = db.Modules.Where(b => b.ModuleNumber == lesson.ModuleNumber).FirstOrDefault(); }
+            using (db) { module = db.Modules.Where(b => b.ModuleID == lesson.ModuleId).FirstOrDefault(); }
             module.Lessons.Add(lesson);
             db.Lessons.Add(lesson);
             db.SaveChanges();

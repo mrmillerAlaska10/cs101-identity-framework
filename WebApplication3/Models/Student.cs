@@ -13,8 +13,8 @@ namespace WebApplication3.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
-        public ICollection<Module> Courses { get; set; }
         
+        public virtual ICollection<StudentModuleModel> Courses { get; set; }
+
     }
 }

@@ -1,13 +1,17 @@
+@model IEnumerable<WebApplication3.Models.ModuleModels.Module>
+
+
 <div class="col-md-2" style="background-color:lavender;" id="sidebar">
-    <div class="navbar navbar-default" role="navigation" >
+    <div class="navbar navbar-default" role="navigation">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Module 1</a></li>
-            <li><a href="#">Module 2</a></li>
-            <li><a href="#">Module 3</a></li>
-            <li><a href="#">Module 4</a></li>
-            <li><a href="#">Module 5</a></li>
-            <li><a href="#">Module 6</a></li>
-            <li><a href="#">Module 7</a></li>
+            <li class="active"><a href="#">Modules</a></li>
+
+
+            @foreach (var mdle in Model)
+            {
+                <li>@mdle.ModuleTitle</li><br />
+            }
+
         </ul>
         <hr style="color: lavender; border:1px solid" />
         <ul class="nav navbar-nav">
@@ -16,4 +20,4 @@
             <li><a href="#">Contact Class</a></li>
         </ul>
     </div>
-   </div>
+</div>

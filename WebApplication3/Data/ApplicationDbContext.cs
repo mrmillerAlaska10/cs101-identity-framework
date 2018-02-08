@@ -28,6 +28,8 @@ namespace WebApplication3.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder) // hardcode in connection to database through this context.
@@ -43,6 +45,7 @@ namespace WebApplication3.Data
         public DbSet<Module> Modules { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Grade> Grades { get; set; }
+        public DbSet<StudentModuleModel> StudentModule { get; set; }
 
     }
 

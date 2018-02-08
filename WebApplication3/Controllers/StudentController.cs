@@ -21,7 +21,7 @@ namespace WebApplication3.Controllers
         {
             var entities = new ApplicationDbContext();
             System.Console.WriteLine(entities.Lessons.ToString());
-            return View(entities.Lessons.ToList());
+            return View(entities.Modules.ToList());
         }
 
         public IActionResult Enrollment(EnrollViewModel model)

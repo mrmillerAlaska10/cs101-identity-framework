@@ -1,0 +1,27 @@
+@model IEnumerable<WebApplication3.Models.ModuleModels.Module>
+@using WebApplication3.Models.ModuleModels
+@{
+    ViewData["Title"] = "Module";
+}
+
+<h2>Modules</h2>
+<hr />
+
+    @{ICollection<Lesson> Lessons = (ICollection <Lesson>)ViewData["Lessons"];
+        
+    }
+   <ul>
+       @foreach( Lesson item in Lessons)
+       {
+        <li>
+            @item.LessonID : @item.LessonTitle
+        </li>
+
+       }
+   </ul>
+
+
+
+
+
+<br />
